@@ -5,7 +5,7 @@ const ws = require("ws");
 
 // Create application/x-www-form-urlencoded parser
 app.use(express.static('public'));
-const server = https.createServer({ /* options */ }, app).listen(3001);
+const server = https.createServer({ /* options */ }, app).listen(3002);
 app.get('/', function (req, res) {
 	res.status(200).send('<h1>hello</h1>');
 });
@@ -59,7 +59,8 @@ const connected = function(ws, req) {
 }
 
 const websockserver = new ws.Server({ 
-  server: server
+  server: server,
+  port: 3001
 });
 
 websockserver.on('connection', function (ws, req) { connected(ws, req) });
