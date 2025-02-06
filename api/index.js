@@ -58,7 +58,7 @@ const connected = function(ws, req) {
 }
 
 const websockserver = new ws.Server({ 
-  port: '80',
+  port: '443',
   path: '/terminal'
 });
 
