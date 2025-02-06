@@ -60,6 +60,7 @@ const connected = function(ws, req) {
 
 const websockserver = new ws.Server({ 
   server: server,
+  port: '3001',
   path: '/terminal'
 });
 
