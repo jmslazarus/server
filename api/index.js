@@ -58,13 +58,17 @@ const connected = function(ws, req) {
 }
 
 const websockserver = new ws.Server({ 
-  port: '443',
+  noServer: true,
   path: '/terminal'
 });
 
 websockserver.on('connection', function (ws, req) { connected(ws, req) });
 console.log('[TerminalServer] Listening for websockets');
 
+
+// websockserver.handleUpgrade(req, req.socket, Buffer.alloc(0), (ws) => {
+//   wss.emit('connection', ws, req);
+// });
 app.listen(3000, () => console.log('Server ready on port 3000.'));
 
 module.exports = app;
