@@ -5,7 +5,7 @@ const ws = require("ws");
 
 // Create application/x-www-form-urlencoded parser
 // app.use(express.static('public'));
-const server = https.createServer({ /* options */ })
+const server = https.createServer({ /* options */ }).listen(3000);
 // app.get('/', function (req, res) {
 // 	res.status(200).send('<h1>hello</h1>');
 // });
@@ -70,5 +70,5 @@ console.log('[TerminalServer] Listening for websockets');
 //   wss.emit('connection', ws, req);
 // });
 //app.listen(3000, () => console.log('Server ready on port 3000.'));
-server.listen(3000);
+// server.listen(3000);
 module.exports = server;
