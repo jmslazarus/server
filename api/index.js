@@ -13,11 +13,11 @@ app.get('/about', function (req, res) {
 	res.status(200).send('<h1>about page</h1>');
 });
 
-const eof = function() {
+const eof = function(ws) {
   ws.send('<EOL>'); 
 }
 
-const message = function(data, flags) {
+const message = function(ws, data, flags) {
   var message = data.toString("utf-8"); 
       split = message.split(' '),
       command = split[0];
@@ -26,15 +26,15 @@ const message = function(data, flags) {
   switch (command) {
     case "shit": 
       ws.send('right now the only command is "help" and it\'s not very helpful'); 
-      eof();
+      eof(ws);
       break;
     case "help": 
       ws.send('you get no help'); 
-      eof();
+      eof(ws);
       break;
     case "": 
       ws.send(''); 
-      eof();
+      eof(ws);
       break;
     case "generate": 
       ws.send('<br>');
@@ -44,7 +44,7 @@ const message = function(data, flags) {
       break;
     default: 
       ws.send("'" + command + "' is not a valid command"); 
-      eof();
+      eof(ws);
       break;
   }
 }
@@ -52,13 +52,13 @@ const connected = function(ws, req) {
   console.log('[TerminalServer] Connected: ', req.socket.remoteAddress);
   ws.send('established.<br>');
 
-  eof();
+  eof(ws);
 
-  ws.on('message', function (data, flags) { message(data, flags) });
+  ws.on('message', function (data, flags) { message(ws, data, flags) });
 }
 
 const websockserver = new ws.Server({ 
-  port: 443,
+  port: '80',
   path: '/terminal'
 });
 
