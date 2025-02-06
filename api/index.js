@@ -1,18 +1,18 @@
-const express = require('express');
+// const express = require('express');
 const https = require('https');
-const app = express();
+// const app = express();
 const ws = require("ws");
 
 // Create application/x-www-form-urlencoded parser
-app.use(express.static('public'));
-const server = https.createServer({ /* options */ }, app).listen(3001);
-app.get('/', function (req, res) {
-	res.status(200).send('<h1>hello</h1>');
-});
+// app.use(express.static('public'));
+const server = https.createServer({ /* options */ })
+// app.get('/', function (req, res) {
+// 	res.status(200).send('<h1>hello</h1>');
+// });
 
-app.get('/about', function (req, res) {
-	res.status(200).send('<h1>about page</h1>');
-});
+// app.get('/about', function (req, res) {
+// 	res.status(200).send('<h1>about page</h1>');
+// });
 
 const eof = function(ws) {
   ws.send('<EOL>'); 
@@ -69,6 +69,6 @@ console.log('[TerminalServer] Listening for websockets');
 // websockserver.handleUpgrade(req, req.socket, Buffer.alloc(0), (ws) => {
 //   wss.emit('connection', ws, req);
 // });
-app.listen(3000, () => console.log('Server ready on port 3000.'));
-
-module.exports = app;
+//app.listen(3000, () => console.log('Server ready on port 3000.'));
+server.listen(3000);
+module.exports = server;
