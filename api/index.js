@@ -59,8 +59,7 @@ const connected = function(ws, req) {
 }
 
 const websockserver = new ws.Server({ 
-  server: server,
-  path: '/terminal'
+  server: server
 });
 
 websockserver.on('connection', function (ws, req) { connected(ws, req) });
